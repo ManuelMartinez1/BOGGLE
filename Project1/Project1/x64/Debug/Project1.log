@@ -1,0 +1,6 @@
+﻿  Dado.cpp
+  MyForm.cpp
+C:\Users\PC2020\Desktop\PRACTICAS ALGORITMOS\Project1\Project1\MyForm.cpp(6,33): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
+  Generating Code...
+  Dado.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  Project1.vcxproj -> C:\Users\PC2020\Desktop\PRACTICAS ALGORITMOS\Project1\x64\Debug\BOGGLE_ED.exe
