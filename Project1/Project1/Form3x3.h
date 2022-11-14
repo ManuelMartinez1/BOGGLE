@@ -1,6 +1,8 @@
 #pragma once
 #include "Instrucciones.h"
-
+#include "Dado.h"
+#include <string>
+#include <vcclr.h>
 namespace BOOGLE_BD {
 
 	using namespace System;
@@ -48,15 +50,24 @@ namespace BOOGLE_BD {
 
 	private: System::Windows::Forms::RichTextBox^ richTextBox1;
 	private: System::Windows::Forms::GroupBox^ groupBox2;
-	private: System::Windows::Forms::Button^ button7;
-	private: System::Windows::Forms::Button^ button6;
-	private: System::Windows::Forms::Button^ button8;
-	private: System::Windows::Forms::Button^ button9;
-	private: System::Windows::Forms::Button^ button10;
-	private: System::Windows::Forms::Button^ button11;
-	private: System::Windows::Forms::Button^ button12;
-	private: System::Windows::Forms::Button^ button13;
-	private: System::Windows::Forms::Button^ button14;
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::Label^ label5;
+	private: System::Windows::Forms::Label^ label6;
+	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::Label^ label8;
+	private: System::Windows::Forms::Label^ label9;
+
+
+
+
+
+
+
+
+
 
 
 	protected:
@@ -89,15 +100,15 @@ namespace BOOGLE_BD {
 			this->menuStrip2 = (gcnew System::Windows::Forms::MenuStrip());
 			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
-			this->button7 = (gcnew System::Windows::Forms::Button());
-			this->button6 = (gcnew System::Windows::Forms::Button());
-			this->button8 = (gcnew System::Windows::Forms::Button());
-			this->button9 = (gcnew System::Windows::Forms::Button());
-			this->button10 = (gcnew System::Windows::Forms::Button());
-			this->button11 = (gcnew System::Windows::Forms::Button());
-			this->button12 = (gcnew System::Windows::Forms::Button());
-			this->button13 = (gcnew System::Windows::Forms::Button());
-			this->button14 = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->groupBox1->SuspendLayout();
 			this->groupBox2->SuspendLayout();
 			this->SuspendLayout();
@@ -106,9 +117,9 @@ namespace BOOGLE_BD {
 			// 
 			this->menuStrip1->GripMargin = System::Windows::Forms::Padding(2, 2, 0, 2);
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(24, 24);
-			this->menuStrip1->Location = System::Drawing::Point(0, 24);
+			this->menuStrip1->Location = System::Drawing::Point(0, 36);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(857, 24);
+			this->menuStrip1->Size = System::Drawing::Size(857, 36);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -127,6 +138,7 @@ namespace BOOGLE_BD {
 			this->button1->TabIndex = 0;
 			this->button1->Text = L"Nuevo";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &Form3x3::button1_Click);
 			// 
 			// button2
 			// 
@@ -184,7 +196,7 @@ namespace BOOGLE_BD {
 			this->menuStrip2->ImageScalingSize = System::Drawing::Size(24, 24);
 			this->menuStrip2->Location = System::Drawing::Point(0, 0);
 			this->menuStrip2->Name = L"menuStrip2";
-			this->menuStrip2->Size = System::Drawing::Size(857, 24);
+			this->menuStrip2->Size = System::Drawing::Size(857, 36);
 			this->menuStrip2->TabIndex = 5;
 			this->menuStrip2->Text = L"menuStrip2";
 			// 
@@ -206,101 +218,110 @@ namespace BOOGLE_BD {
 			this->groupBox2->TabStop = false;
 			this->groupBox2->Text = L"Palabras proporcionadas";
 			// 
-			// button7
+			// label1
 			// 
-			this->button7->Location = System::Drawing::Point(167, 149);
-			this->button7->Name = L"button7";
-			this->button7->Size = System::Drawing::Size(81, 81);
-			this->button7->TabIndex = 8;
-			this->button7->Text = L"Nuevo";
-			this->button7->UseVisualStyleBackColor = true;
+			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label1->Location = System::Drawing::Point(53, 124);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(0, 82);
+			this->label1->TabIndex = 8;
 			// 
-			// button6
+			// label2
 			// 
-			this->button6->Location = System::Drawing::Point(67, 149);
-			this->button6->Name = L"button6";
-			this->button6->Size = System::Drawing::Size(81, 81);
-			this->button6->TabIndex = 9;
-			this->button6->Text = L"Nuevo";
-			this->button6->UseVisualStyleBackColor = true;
+			this->label2->AutoSize = true;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->Location = System::Drawing::Point(161, 124);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(0, 82);
+			this->label2->TabIndex = 9;
 			// 
-			// button8
+			// label3
 			// 
-			this->button8->Location = System::Drawing::Point(272, 149);
-			this->button8->Name = L"button8";
-			this->button8->Size = System::Drawing::Size(81, 81);
-			this->button8->TabIndex = 10;
-			this->button8->Text = L"Nuevo";
-			this->button8->UseVisualStyleBackColor = true;
+			this->label3->AutoSize = true;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label3->Location = System::Drawing::Point(269, 124);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(0, 82);
+			this->label3->TabIndex = 10;
 			// 
-			// button9
+			// label4
 			// 
-			this->button9->Location = System::Drawing::Point(272, 236);
-			this->button9->Name = L"button9";
-			this->button9->Size = System::Drawing::Size(81, 81);
-			this->button9->TabIndex = 13;
-			this->button9->Text = L"Nuevo";
-			this->button9->UseVisualStyleBackColor = true;
+			this->label4->AutoSize = true;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label4->Location = System::Drawing::Point(269, 218);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(0, 82);
+			this->label4->TabIndex = 13;
 			// 
-			// button10
+			// label5
 			// 
-			this->button10->Location = System::Drawing::Point(67, 236);
-			this->button10->Name = L"button10";
-			this->button10->Size = System::Drawing::Size(81, 81);
-			this->button10->TabIndex = 12;
-			this->button10->Text = L"Nuevo";
-			this->button10->UseVisualStyleBackColor = true;
+			this->label5->AutoSize = true;
+			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label5->Location = System::Drawing::Point(161, 218);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(0, 82);
+			this->label5->TabIndex = 12;
 			// 
-			// button11
+			// label6
 			// 
-			this->button11->Location = System::Drawing::Point(167, 236);
-			this->button11->Name = L"button11";
-			this->button11->Size = System::Drawing::Size(81, 81);
-			this->button11->TabIndex = 11;
-			this->button11->Text = L"Nuevo";
-			this->button11->UseVisualStyleBackColor = true;
+			this->label6->AutoSize = true;
+			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label6->Location = System::Drawing::Point(53, 218);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(0, 82);
+			this->label6->TabIndex = 11;
 			// 
-			// button12
+			// label7
 			// 
-			this->button12->Location = System::Drawing::Point(272, 323);
-			this->button12->Name = L"button12";
-			this->button12->Size = System::Drawing::Size(81, 81);
-			this->button12->TabIndex = 16;
-			this->button12->Text = L"Nuevo";
-			this->button12->UseVisualStyleBackColor = true;
+			this->label7->AutoSize = true;
+			this->label7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label7->Location = System::Drawing::Point(269, 322);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(0, 82);
+			this->label7->TabIndex = 16;
 			// 
-			// button13
+			// label8
 			// 
-			this->button13->Location = System::Drawing::Point(67, 323);
-			this->button13->Name = L"button13";
-			this->button13->Size = System::Drawing::Size(81, 81);
-			this->button13->TabIndex = 15;
-			this->button13->Text = L"Nuevo";
-			this->button13->UseVisualStyleBackColor = true;
+			this->label8->AutoSize = true;
+			this->label8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label8->Location = System::Drawing::Point(161, 322);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(0, 82);
+			this->label8->TabIndex = 15;
 			// 
-			// button14
+			// label9
 			// 
-			this->button14->Location = System::Drawing::Point(167, 323);
-			this->button14->Name = L"button14";
-			this->button14->Size = System::Drawing::Size(81, 81);
-			this->button14->TabIndex = 14;
-			this->button14->Text = L"Nuevo";
-			this->button14->UseVisualStyleBackColor = true;
+			this->label9->AutoSize = true;
+			this->label9->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label9->Location = System::Drawing::Point(53, 322);
+			this->label9->Name = L"label9";
+			this->label9->Size = System::Drawing::Size(0, 82);
+			this->label9->TabIndex = 14;
 			// 
 			// Form3x3
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(857, 479);
-			this->Controls->Add(this->button12);
-			this->Controls->Add(this->button13);
-			this->Controls->Add(this->button14);
-			this->Controls->Add(this->button9);
-			this->Controls->Add(this->button10);
-			this->Controls->Add(this->button11);
-			this->Controls->Add(this->button8);
-			this->Controls->Add(this->button6);
-			this->Controls->Add(this->button7);
+			this->Controls->Add(this->label7);
+			this->Controls->Add(this->label8);
+			this->Controls->Add(this->label9);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->label6);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->groupBox2);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->groupBox1);
@@ -324,5 +345,68 @@ private: System::Void instruccionesToolStripMenuItem_Click(System::Object^ sende
 	instrucciones.ShowDialog();
 }
 
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	Dado* dado1 = new Dado("ARHSDE");
+	Dado* dado2 = new Dado("FUAARB");
+	Dado* dado3 = new Dado("IOTALG");
+	Dado* dado4 = new Dado();
+	Dado* dado5 = new Dado("FOMTUI");
+	Dado* dado6 = new Dado("OODBLG");
+	Dado* dado7 = new Dado("RPSZTL");
+	Dado* dado8 = new Dado("EBIOUA");
+	Dado* dado9 = new Dado("CAREME");
+	Dado* dado10 = new Dado("RSJEFI");
+	Dado* dado11 = new Dado("NSXJAH");
+	Dado* dado12 = new Dado();
+	Dado* dado13 = new Dado("NBIMEE");
+	Dado* dado14 = new Dado("BAANIT");
+	Dado* dado15 = new Dado("EPVOCU");
+	Dado* dado16 = new Dado("SCAAPT");
+
+	char a = dado1->roll();
+	std::string str;
+	str += a;
+	label1->Text = gcnew System::String(str.c_str());
+
+	char a2 = dado2->roll();
+	std::string str2;
+	str2 += a2;
+	label2->Text = gcnew System::String(str2.c_str());
+
+	char a3 = dado3->roll();
+	std::string str3;
+	str3 += a3;
+	label3->Text = gcnew System::String(str3.c_str());
+
+	char a4 = dado4->roll();
+	std::string str4;
+	str4 += a4;
+	label4->Text = gcnew System::String(str4.c_str());
+
+	char a5 = dado5->roll();
+	std::string str5;
+	str5 += a5;
+	label5->Text = gcnew System::String(str5.c_str());
+
+	char a6 = dado6->roll();
+	std::string str6;
+	str6 += a6;
+	label6->Text = gcnew System::String(str6.c_str());
+
+	char a7 = dado7->roll();
+	std::string str7;
+	str7 += a7;
+	label7->Text = gcnew System::String(str7.c_str());
+
+	char a8 = dado8->roll();
+	std::string str8;
+	str8 += a8;
+	label8->Text = gcnew System::String(str8.c_str());
+
+	char a9 = dado9->roll();
+	std::string str9;
+	str9 += a9;
+	label9->Text = gcnew System::String(str9.c_str());
+}
 };
 }

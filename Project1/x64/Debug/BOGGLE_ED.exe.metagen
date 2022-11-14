@@ -21,6 +21,9 @@ Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c5619
 Class BOOGLE_BD.Form4x4: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    button1_Click(Object, EventArgs): PrivateScope, Public, HideBySig
+    button2_Click(Object, EventArgs): PrivateScope, Public, HideBySig
 Class BOOGLE_BD.Instrucciones: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
