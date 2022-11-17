@@ -10,7 +10,8 @@ private:
 public:
     Trie();
     void Insertar(string palabra);
-    bool Buscar(string palabra);
+    bool BuscarPalabra(string palabra);
+    bool BuscarLetras(string palabra);
 };
 Trie::Trie()
 {
@@ -29,7 +30,7 @@ void Trie::Insertar(string palabra)
     }
     temp->Final = true;
 }
-bool Trie::Buscar(string palabra)
+bool Trie::BuscarPalabra(string palabra)
 {
     Trie* temp = this;
     for (int i = 0;i < palabra.length();i++) {
@@ -39,4 +40,18 @@ bool Trie::Buscar(string palabra)
         temp = temp->Hijo[index];
     }
     return temp->Final;
+}
+bool Trie::BuscarLetras(string palabra)
+{
+    Trie* temp = this;
+    for (int i = 0;i < palabra.length();i++) {
+        int index = palabra[i] - 'a';
+        if (temp->Hijo[index] == nullptr)
+            return false;
+        temp = temp->Hijo[index];
+    }
+    if (temp != nullptr)
+        return true;
+    else
+        return false;
 }
