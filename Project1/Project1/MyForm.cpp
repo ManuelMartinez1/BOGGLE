@@ -1,6 +1,8 @@
 #include "MyForm.h"
 #include "Dado.h"
 #include "ArbolTrie.h"
+#include <fstream>
+#include <string>
 #include<iostream>
 
 using namespace System;
@@ -8,6 +10,15 @@ using namespace System::Windows::Forms;
 void main(array<String^>^ args) {
 
 	Trie* raiz = new Trie();
+	std::fstream palabras;
+	palabras.open("palabras.txt", std::ios::in);
+	if (palabras.is_open()) {
+		std::string tp;
+		while (getline(palabras, tp)) {
+			raiz->Insertar(tp);
+		}
+	}
+	palabras.close();
 
 	Dado* dado1 = new Dado("ARHSDE");
 	Dado* dado2 = new Dado("FUAARB");
