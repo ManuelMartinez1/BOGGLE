@@ -1,5 +1,5 @@
-#include <iostream>
-using namespace std;
+#pragma once
+
 const int Alfabeto = 26;
 
 class Trie
@@ -9,9 +9,9 @@ private:
     bool Final;
 public:
     Trie();
-    void Insertar(string palabra);
-    bool BuscarPalabra(string palabra);
-    bool BuscarLetras(string palabra);
+    void Insertar(std::string palabra);
+    bool BuscarPalabra(std::string palabra);
+    bool BuscarLetras(std::string palabra);
 };
 Trie::Trie()
 {
@@ -19,7 +19,7 @@ Trie::Trie()
     for (int i = 0;i < Alfabeto;i++)
         this->Hijo[i] = nullptr;
 }
-void Trie::Insertar(string palabra)
+void Trie::Insertar(std::string palabra)
 {
     Trie* temp = this;
     for (int i = 0;i < palabra.length();i++) {
@@ -30,7 +30,7 @@ void Trie::Insertar(string palabra)
     }
     temp->Final = true;
 }
-bool Trie::BuscarPalabra(string palabra)
+bool Trie::BuscarPalabra(std::string palabra)
 {
     Trie* temp = this;
     for (int i = 0;i < palabra.length();i++) {
@@ -41,7 +41,7 @@ bool Trie::BuscarPalabra(string palabra)
     }
     return temp->Final;
 }
-bool Trie::BuscarLetras(string palabra)
+bool Trie::BuscarLetras(std::string palabra)
 {
     Trie* temp = this;
     for (int i = 0;i < palabra.length();i++) {

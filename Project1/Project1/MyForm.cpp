@@ -1,10 +1,13 @@
 #include "MyForm.h"
 #include "Dado.h"
+#include "ArbolTrie.h"
 #include<iostream>
+
 using namespace System;
 using namespace System::Windows::Forms;
 void main(array<String^>^ args) {
 
+	Trie* raiz = new Trie();
 
 	Dado* dado1 = new Dado("ARHSDE");
 	Dado* dado2 = new Dado("FUAARB");
