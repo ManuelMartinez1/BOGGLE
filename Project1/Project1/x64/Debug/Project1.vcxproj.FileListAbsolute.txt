@@ -22,3 +22,11 @@ C:\Users\PC2020\source\repos\Project1\Project1\x64\Debug\BOOGLE_BD.Form3x3.resou
 C:\Users\PC2020\source\repos\Project1\Project1\x64\Debug\BOOGLE_BD.MyForm.resources
 C:\Users\PC2020\source\repos\Project1\Project1\x64\Debug\BOOGLE_BD.Tablero.resources
 C:\Users\PC2020\source\repos\Project1\Project1\x64\Debug\Project1.vcxproj.GenerateResource.cache
+C:\Users\PC2020\Desktop\BOGGLE-main\Project1\Project1\x64\Debug\Project1.vcxproj.AssemblyReference.cache
+C:\Users\PC2020\Desktop\BOGGLE-main\Project1\Project1\x64\Debug\Project1.vcxproj.SuggestedBindingRedirects.cache
+C:\Users\PC2020\Desktop\BOGGLE-main\Project1\Project1\x64\Debug\BOOGLE_BD.Form4x4.resources
+C:\Users\PC2020\Desktop\BOGGLE-main\Project1\Project1\x64\Debug\BOOGLE_BD.Instrucciones.resources
+C:\Users\PC2020\Desktop\BOGGLE-main\Project1\Project1\x64\Debug\BOOGLE_BD.Form3x3.resources
+C:\Users\PC2020\Desktop\BOGGLE-main\Project1\Project1\x64\Debug\BOOGLE_BD.MyForm.resources
+C:\Users\PC2020\Desktop\BOGGLE-main\Project1\Project1\x64\Debug\BOOGLE_BD.Tablero.resources
+C:\Users\PC2020\Desktop\BOGGLE-main\Project1\Project1\x64\Debug\Project1.vcxproj.GenerateResource.cache

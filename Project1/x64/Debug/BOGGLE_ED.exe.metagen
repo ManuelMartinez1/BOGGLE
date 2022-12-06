@@ -24,12 +24,15 @@ Class BOOGLE_BD.Form4x4: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Methods:
     button1_Click(Object, EventArgs): PrivateScope, Public, HideBySig
     button2_Click(Object, EventArgs): PrivateScope, Public, HideBySig
+    esAdyacente(SByte IsSignUnspecifiedByte, SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
 Class BOOGLE_BD.Instrucciones: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class BOOGLE_BD.Form3x3: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    esAdyacente(SByte IsSignUnspecifiedByte, SByte IsSignUnspecifiedByte): PrivateScope, Public, HideBySig
 Class BOOGLE_BD.Tablero: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

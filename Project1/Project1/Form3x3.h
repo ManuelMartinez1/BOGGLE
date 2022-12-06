@@ -3,6 +3,8 @@
 #include "Dado.h"
 #include <string>
 #include <vcclr.h>
+#include "tab.h"
+#include <msclr/marshal_cppstd.h>
 namespace BOOGLE_BD {
 
 	using namespace System;
@@ -48,7 +50,7 @@ namespace BOOGLE_BD {
 	private: System::Windows::Forms::Button^ button5;
 	private: System::Windows::Forms::MenuStrip^ menuStrip2;
 
-	private: System::Windows::Forms::RichTextBox^ richTextBox1;
+
 	private: System::Windows::Forms::GroupBox^ groupBox2;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
@@ -59,6 +61,7 @@ namespace BOOGLE_BD {
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::Label^ label8;
 	private: System::Windows::Forms::Label^ label9;
+	private: System::Windows::Forms::ListBox^ listBox1;
 
 
 
@@ -98,8 +101,8 @@ namespace BOOGLE_BD {
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->menuStrip2 = (gcnew System::Windows::Forms::MenuStrip());
-			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
+			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
@@ -117,9 +120,9 @@ namespace BOOGLE_BD {
 			// 
 			this->menuStrip1->GripMargin = System::Windows::Forms::Padding(2, 2, 0, 2);
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(24, 24);
-			this->menuStrip1->Location = System::Drawing::Point(0, 36);
+			this->menuStrip1->Location = System::Drawing::Point(0, 24);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(857, 36);
+			this->menuStrip1->Size = System::Drawing::Size(857, 24);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -189,6 +192,7 @@ namespace BOOGLE_BD {
 			this->button5->TabIndex = 4;
 			this->button5->Text = L"Enter";
 			this->button5->UseVisualStyleBackColor = true;
+			this->button5->Click += gcnew System::EventHandler(this, &Form3x3::button5_Click);
 			// 
 			// menuStrip2
 			// 
@@ -196,27 +200,28 @@ namespace BOOGLE_BD {
 			this->menuStrip2->ImageScalingSize = System::Drawing::Size(24, 24);
 			this->menuStrip2->Location = System::Drawing::Point(0, 0);
 			this->menuStrip2->Name = L"menuStrip2";
-			this->menuStrip2->Size = System::Drawing::Size(857, 36);
+			this->menuStrip2->Size = System::Drawing::Size(857, 24);
 			this->menuStrip2->TabIndex = 5;
 			this->menuStrip2->Text = L"menuStrip2";
 			// 
-			// richTextBox1
-			// 
-			this->richTextBox1->Location = System::Drawing::Point(16, 33);
-			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->Size = System::Drawing::Size(184, 297);
-			this->richTextBox1->TabIndex = 6;
-			this->richTextBox1->Text = L"";
-			// 
 			// groupBox2
 			// 
-			this->groupBox2->Controls->Add(this->richTextBox1);
+			this->groupBox2->Controls->Add(this->listBox1);
 			this->groupBox2->Location = System::Drawing::Point(585, 91);
 			this->groupBox2->Name = L"groupBox2";
 			this->groupBox2->Size = System::Drawing::Size(222, 358);
 			this->groupBox2->TabIndex = 7;
 			this->groupBox2->TabStop = false;
 			this->groupBox2->Text = L"Palabras proporcionadas";
+			// 
+			// listBox1
+			// 
+			this->listBox1->FormattingEnabled = true;
+			this->listBox1->ItemHeight = 20;
+			this->listBox1->Location = System::Drawing::Point(13, 28);
+			this->listBox1->Name = L"listBox1";
+			this->listBox1->Size = System::Drawing::Size(209, 324);
+			this->listBox1->TabIndex = 0;
 			// 
 			// label1
 			// 
@@ -346,67 +351,212 @@ private: System::Void instruccionesToolStripMenuItem_Click(System::Object^ sende
 }
 
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	Dado* dado1 = new Dado("ARHSDE");
-	Dado* dado2 = new Dado("FUAARB");
-	Dado* dado3 = new Dado("IOTALG");
-	Dado* dado4 = new Dado();
-	Dado* dado5 = new Dado("FOMTUI");
-	Dado* dado6 = new Dado("OODBLG");
-	Dado* dado7 = new Dado("RPSZTL");
-	Dado* dado8 = new Dado("EBIOUA");
-	Dado* dado9 = new Dado("CAREME");
-	Dado* dado10 = new Dado("RSJEFI");
-	Dado* dado11 = new Dado("NSXJAH");
-	Dado* dado12 = new Dado();
-	Dado* dado13 = new Dado("NBIMEE");
-	Dado* dado14 = new Dado("BAANIT");
-	Dado* dado15 = new Dado("EPVOCU");
-	Dado* dado16 = new Dado("SCAAPT");
+	listBox1->Items->Clear();
+	Dado* dado1 = new Dado("AAEEGN");
+	Dado* dado2 = new Dado("ABBJOO");
+	Dado* dado3 = new Dado("ACHOPS");
+	Dado* dado4 = new Dado("AFFKPS");
+	Dado* dado5 = new Dado("AOOTTW");
+	Dado* dado6 = new Dado("CIMOTU");
+	Dado* dado7 = new Dado("DEILRX");
+	Dado* dado8 = new Dado("DELRVY");
+	Dado* dado9 = new Dado("DISTTY");
+	Dado* dado10 = new Dado("EEGHNW");
+	Dado* dado11 = new Dado("EEINSU");
+	Dado* dado12 = new Dado("EHRTVW");
+	Dado* dado13 = new Dado("EIOSST");
+	Dado* dado14 = new Dado("ELRTTY");
+	Dado* dado15 = new Dado("HIMNQU");
+	Dado* dado16 = new Dado("HLNNRZ");
 
 	char a = dado1->roll();
+	global_tablero3[0][0] = a;
 	std::string str;
 	str += a;
 	label1->Text = gcnew System::String(str.c_str());
 
 	char a2 = dado2->roll();
+	global_tablero3[0][1] = a2;
 	std::string str2;
 	str2 += a2;
 	label2->Text = gcnew System::String(str2.c_str());
 
 	char a3 = dado3->roll();
+	global_tablero3[0][2] = a3;
 	std::string str3;
 	str3 += a3;
 	label3->Text = gcnew System::String(str3.c_str());
 
 	char a4 = dado4->roll();
+	global_tablero3[1][0] = a4;
 	std::string str4;
 	str4 += a4;
 	label4->Text = gcnew System::String(str4.c_str());
 
 	char a5 = dado5->roll();
+	global_tablero3[1][1] = a5;
 	std::string str5;
 	str5 += a5;
 	label5->Text = gcnew System::String(str5.c_str());
 
 	char a6 = dado6->roll();
+	global_tablero3[1][2] = a6;
 	std::string str6;
 	str6 += a6;
 	label6->Text = gcnew System::String(str6.c_str());
 
 	char a7 = dado7->roll();
+	global_tablero3[2][0] = a7;
 	std::string str7;
 	str7 += a7;
 	label7->Text = gcnew System::String(str7.c_str());
 
 	char a8 = dado8->roll();
+	global_tablero3[2][1] = a8;
 	std::string str8;
 	str8 += a8;
 	label8->Text = gcnew System::String(str8.c_str());
 
 	char a9 = dado9->roll();
+	global_tablero3[2][2] = a9;
 	std::string str9;
 	str9 += a9;
 	label9->Text = gcnew System::String(str9.c_str());
 }
+private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+	System::String^ msg = "No se puede formar la palabra. intentalo de nuevo";
+	System::String^ strS = textBox1->Text;
+	std::string str = msclr::interop::marshal_as<std::string>(strS);
+	auto cadena = str.c_str();
+	int c = 0, bandera = 0;
+	char a, b;
+	for (int i = 0; i < str.size() - 1; i++) {
+		a = cadena[c];
+		b = cadena[c + 1];
+		c++;
+		if (!esAdyacente(a, b))
+			bandera = 1;
+	}
+	if (bandera == 1) {
+		MessageBox::Show(msg);
+	}
+	else
+	{
+		listBox1->Items->Add(textBox1->Text);
+	}
+	
+}
+	   public: bool esAdyacente(char a, char b) {
+		   char adyCentro[8];
+		   char adyEsquina[3];
+		   char adyBorde[5];
+		   int c;
+		   char bandera1 = global_tablero3[0][0];
+		   for (int i = 0; i < 3; i++) {
+			   for (int j = 0; j < 3; j++) {
+				   bandera1 = global_tablero3[i][j];
+				   if (a == global_tablero3[i][j]) {
+					   if (i == 0 && j == 0) {// ESQUINA SUPERIOR IZQUIERDA
+						   bandera1 = global_tablero3[i][j];
+						   adyEsquina[0] = global_tablero3[i + 1][j];
+						   adyEsquina[1] = global_tablero3[i][j + 1];
+						   adyEsquina[2] = global_tablero3[i + 1][j + 1];
+						   for (c = 0; c < 3; c++) {
+							   if (b == adyEsquina[c])
+								   return true;
+						   }
+					   }
+					   if (i == 0 && j > 0 && j < 3) {//BORDE SUPERIOR
+						   adyBorde[0] = global_tablero3[i][j - 1];
+						   adyBorde[1] = global_tablero3[i][j + 1];
+						   adyBorde[2] = global_tablero3[i + 1][j];
+						   adyBorde[3] = global_tablero3[i + 1][j - 1];
+						   adyBorde[4] = global_tablero3[i + 1][j + 1];
+						   for (c = 0; c < 5; c++) {
+							   if (b == adyBorde[c])
+								   return true;
+						   }
+					   }
+					   if (i == 0 && j == 3) {//ESQUINA SUPERIOR DERECHA
+						   adyEsquina[0] = global_tablero3[i][j - 1];
+						   adyEsquina[1] = global_tablero3[i + 1][j];
+						   adyEsquina[2] = global_tablero3[i + 1][j - 1];
+						   for (c = 0; c < 3; c++) {
+							   if (b == adyEsquina[c])
+								   return true;
+						   }
+					   }
+					   if (j == 0 && i > 0 && i < 3) {// BORDE IZQUIERDO
+						   adyBorde[0] = global_tablero3[i - 1][j];
+						   adyBorde[1] = global_tablero3[i - 1][j + 1];
+						   adyBorde[2] = global_tablero3[i][j + 1];
+						   adyBorde[3] = global_tablero3[i + 1][j + 1];
+						   adyBorde[4] = global_tablero3[i + 1][j];
+						   for (c = 0; c < 5; c++) {
+							   if (b == adyBorde[c])
+								   return true;
+						   }
+					   }
+					   if (i > 0 && i < 3 && j>0 && j < 3) {//CENTROS
+						   adyCentro[0] = global_tablero3[i - 1][j + 1];
+						   adyCentro[1] = global_tablero3[i - 1][j];
+						   adyCentro[2] = global_tablero3[i - 1][j - 1];
+						   adyCentro[3] = global_tablero3[i][j + 1];
+						   adyCentro[4] = global_tablero3[i + 1][j + 1];
+						   adyCentro[5] = global_tablero3[i + 1][j];
+						   adyCentro[6] = global_tablero3[i + 1][j - 1];
+						   adyCentro[7] = global_tablero3[i][j - 1];
+						   for (c = 0; c < 8; c++) {
+							   if (b == adyCentro[c])
+								   return true;
+						   }
+					   }
+					   if (i > 0 && i < 3 && j == 3) {//BORDE DERECHO
+						   adyBorde[0] = global_tablero3[i - 1][j];
+						   adyBorde[1] = global_tablero3[i - 1][j - 1];
+						   adyBorde[2] = global_tablero3[i][j - 1];
+						   adyBorde[3] = global_tablero3[i - 1][j];
+						   adyBorde[4] = global_tablero3[i + 1][j - 1];
+						   for (c = 0; c < 5; c++) {
+							   if (b == adyBorde[c])
+								   return true;
+						   }
+					   }
+					   if (i == 3 && j > 0 && j < 3) {//BORDE INFERIOR
+						   adyBorde[0] = global_tablero3[i][j - 1];
+						   adyBorde[1] = global_tablero3[i - 1][j - 1];
+						   adyBorde[2] = global_tablero3[i - 1][j];
+						   adyBorde[3] = global_tablero3[i - 1][j + 1];
+						   adyBorde[4] = global_tablero3[i][j + 1];
+						   for (c = 0; c < 5; c++) {
+							   if (b == adyBorde[c])
+								   return true;
+						   }
+					   }
+					   if (i == 3 && j == 0) {//ESQUINA INFERIOR IZQUIERDA
+						   adyEsquina[0] = global_tablero3[i - 1][j];
+						   adyEsquina[1] = global_tablero3[i - 1][j + 1];
+						   adyEsquina[2] = global_tablero3[i][j + 1];
+						   for (c = 0; c < 3; c++) {
+							   if (b == adyEsquina[c])
+								   return true;
+						   }
+					   }
+					   if (i == 3 && j == 3) {//ESQUINA INFERIOR DERECHA
+						   adyEsquina[0] = global_tablero3[i][j - 1];
+						   adyEsquina[1] = global_tablero3[i - 1][j - 1];
+						   adyEsquina[2] = global_tablero3[i - 1][j];
+						   for (c = 0; c < 3; c++) {
+							   if (b == adyEsquina[c])
+								   return true;
+						   }
+					   }
+
+				   }
+
+			   }
+		   }
+		   return false;
+	   }
 };
 }

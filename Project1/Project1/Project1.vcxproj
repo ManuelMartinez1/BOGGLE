@@ -127,6 +127,7 @@
     <ClCompile Include="Instrucciones.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="MyForm1.cpp" />
+    <ClCompile Include="tab.cpp" />
     <ClCompile Include="Tablero.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +144,7 @@
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="tab.h" />
     <ClInclude Include="Tablero.h">
       <FileType>CppForm</FileType>
     </ClInclude>

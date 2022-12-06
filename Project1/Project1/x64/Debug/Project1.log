@@ -1,13 +1,5 @@
-﻿  Dado.cpp
-  Form4x4.cpp
-  MyForm.cpp
-C:\Users\PC2020\source\repos\Project1\Project1\MyForm.cpp(6,33): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
-  MyForm1.cpp
-  Tablero.cpp
-  Generating Code...
-C:\Users\PC2020\source\repos\Project1\Project1\Dado.h(54): warning C4715: 'Dado::roll': not all control paths return a value
-C:\Users\PC2020\source\repos\Project1\Project1\Dado.h(54): warning C4715: 'Dado::roll': not all control paths return a value
-C:\Users\PC2020\source\repos\Project1\Project1\Dado.h(54): warning C4715: 'Dado::roll': not all control paths return a value
-C:\Users\PC2020\source\repos\Project1\Project1\Dado.h(54): warning C4715: 'Dado::roll': not all control paths return a value
+﻿  MyForm.cpp
+C:\Users\PC2020\Desktop\BOGGLE-main\Project1\Project1\MyForm.cpp(10,33): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
+C:\Users\PC2020\Desktop\BOGGLE-main\Project1\Project1\Dado.h(54): warning C4715: 'Dado::roll': not all control paths return a value
   Dado.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-  Project1.vcxproj -> C:\Users\PC2020\source\repos\Project1\x64\Debug\BOGGLE_ED.exe
+  Project1.vcxproj -> C:\Users\PC2020\Desktop\BOGGLE-main\Project1\x64\Debug\BOGGLE_ED.exe
