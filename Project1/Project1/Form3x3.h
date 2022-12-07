@@ -7,6 +7,9 @@
 #include "tab.h"
 #include <msclr/marshal_cppstd.h>
 #include "Trie.h"
+#include "Graph.h"
+
+
 namespace BOOGLE_BD {
 
 	using namespace System;
@@ -48,8 +51,8 @@ namespace BOOGLE_BD {
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Button^ button3;
 	private: System::Windows::Forms::Button^ button4;
-	private: System::Windows::Forms::GroupBox^ groupBox1;
 	private: System::Windows::Forms::Button^ button5;
+	private: System::Windows::Forms::GroupBox^ groupBox1;
 	private: System::Windows::Forms::MenuStrip^ menuStrip2;
 
 
@@ -84,8 +87,8 @@ namespace BOOGLE_BD {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->button5 = (gcnew System::Windows::Forms::Button());
+			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->menuStrip2 = (gcnew System::Windows::Forms::MenuStrip());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
 			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
@@ -147,6 +150,7 @@ namespace BOOGLE_BD {
 			this->button3->TabIndex = 2;
 			this->button3->Text = L"Resolver";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &Form3x3::button3_Click);
 			// 
 			// button4
 			// 
@@ -336,7 +340,6 @@ namespace BOOGLE_BD {
 			this->groupBox2->ResumeLayout(false);
 			this->ResumeLayout(false);
 			this->PerformLayout();
-
 		}
 #pragma endregion
 	private: System::Void groupBox1_Enter(System::Object^ sender, System::EventArgs^ e) {
@@ -345,11 +348,13 @@ private: System::Void instruccionesToolStripMenuItem_Click(System::Object^ sende
 	Instrucciones instrucciones;
 	instrucciones.ShowDialog();
 }
-
 	   
 System::String^ getSystemString(char c) {
 	std::string str;
 	str += c;
+	return gcnew System::String(str.c_str());
+}
+System::String^ getSystemString(std::string str) {
 	return gcnew System::String(str.c_str());
 }
 void updateBoard() {
@@ -363,7 +368,7 @@ void updateBoard() {
 	label8->Text = gcnew System::String(getSystemString(global_tablero3[7]));
 	label9->Text = gcnew System::String(getSystemString(global_tablero3[8]));
 }
-	   
+
 	   //NUEVO
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	listBox1->Items->Clear();
@@ -380,21 +385,33 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	}
 
 	updateBoard();
-	//llenar todas las posibles combinaciones aqui
-
 	Trie* diccionary = new Trie();
 	diccionary->cargarDiccionario();
+	Graph* graph = new Graph(3);
+	allWordsInBoard = graph->getAllPossibleWords(global_tablero3, diccionary);
 }
+	   
+	bool wordInBoard(std::string str) {
+		for (auto i : allWordsInBoard) {
+			if (i == str) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	   //ENTER
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
-
-	//DECLARAR TRIE Y CARGAR PALABRAS AL TRIE
 	System::String^ msg = "No se puede formar la palabra. intentalo de nuevo";
 	System::String^ strS = textBox1->Text;
 	std::string str = msclr::interop::marshal_as<std::string>(strS);
 
-	listBox1->Items->Add(textBox1->Text);
-
+	if (wordInBoard(str)) {
+		listBox1->Items->Add(textBox1->Text);
+	}
+	else {
+		MessageBox::Show(msg);
+	}
 }
 
 //rotar
@@ -412,5 +429,14 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	global_tablero3 = newTablero;
 	updateBoard();
 }
+
+	   //resolver
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	listBox1->Items->Clear();
+	for (auto i : allWordsInBoard) {
+		listBox1->Items->Add(getSystemString(i));
+	}
+}
+
 };
 }
