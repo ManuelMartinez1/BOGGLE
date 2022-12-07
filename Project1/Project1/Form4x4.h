@@ -2,6 +2,7 @@
 #include "Dado.h"
 #include "tab.h"
 #include <string>
+#include <fstream>
 #include <vcclr.h>
 #include <math.h>
 #include <msclr/marshal_cppstd.h>
@@ -14,6 +15,7 @@ namespace BOOGLE_BD {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace System::Runtime::InteropServices;
+	using namespace std;
 
 	/// <summary>
 	/// Summary for Form4x4
@@ -70,21 +72,6 @@ namespace BOOGLE_BD {
 	private: System::Windows::Forms::Label^ label15;
 	private: System::Windows::Forms::Label^ label16;
 	private: System::Windows::Forms::ListBox^ listBox1;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	private:
 		/// <summary>
@@ -407,18 +394,18 @@ namespace BOOGLE_BD {
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(871, 521);
-			this->Controls->Add(this->label13);
-			this->Controls->Add(this->label14);
-			this->Controls->Add(this->label15);
 			this->Controls->Add(this->label16);
-			this->Controls->Add(this->label9);
-			this->Controls->Add(this->label10);
-			this->Controls->Add(this->label11);
+			this->Controls->Add(this->label15);
+			this->Controls->Add(this->label14);
+			this->Controls->Add(this->label13);
 			this->Controls->Add(this->label12);
-			this->Controls->Add(this->label5);
-			this->Controls->Add(this->label6);
-			this->Controls->Add(this->label7);
+			this->Controls->Add(this->label11);
+			this->Controls->Add(this->label10);
+			this->Controls->Add(this->label9);
 			this->Controls->Add(this->label8);
+			this->Controls->Add(this->label7);
+			this->Controls->Add(this->label6);
+			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
@@ -435,267 +422,81 @@ namespace BOOGLE_BD {
 			this->groupBox1->ResumeLayout(false);
 			this->ResumeLayout(false);
 			this->PerformLayout();
-
 		}
 #pragma endregion
+
+	System::String^ getSystemString(char c) {
+		std::string str;
+		str += c;
+		return gcnew System::String(str.c_str());
+	}
+
+	void updateBoard() {
+		label1->Text = gcnew System::String(getSystemString(global_tablero[0]));
+		label2->Text = gcnew System::String(getSystemString(global_tablero[1]));
+		label3->Text = gcnew System::String(getSystemString(global_tablero[2]));
+		label4->Text = gcnew System::String(getSystemString(global_tablero[3]));
+		label5->Text = gcnew System::String(getSystemString(global_tablero[4]));
+		label6->Text = gcnew System::String(getSystemString(global_tablero[5]));
+		label7->Text = gcnew System::String(getSystemString(global_tablero[6]));
+		label8->Text = gcnew System::String(getSystemString(global_tablero[7]));
+		label9->Text = gcnew System::String(getSystemString(global_tablero[8]));
+		label10->Text = gcnew System::String(getSystemString(global_tablero[9]));
+		label11->Text = gcnew System::String(getSystemString(global_tablero[10]));
+		label12->Text = gcnew System::String(getSystemString(global_tablero[11]));
+		label13->Text = gcnew System::String(getSystemString(global_tablero[12]));
+		label14->Text = gcnew System::String(getSystemString(global_tablero[13]));
+		label15->Text = gcnew System::String(getSystemString(global_tablero[14]));
+		label16->Text = gcnew System::String(getSystemString(global_tablero[15]));
+	}
+
+	//NUEVO 
 	public: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		listBox1->Items->Clear();
-	
-		Dado* dado1 = new Dado("AAEEGN");
-		Dado* dado2 = new Dado("ABBJOO");
-		Dado* dado3 = new Dado("ACHOPS");
-		Dado* dado4 = new Dado("AFFKPS");
-		Dado* dado5 = new Dado("AOOTTW");
-		Dado* dado6 = new Dado("CIMOTU");
-		Dado* dado7 = new Dado("DEILRX");
-		Dado* dado8 = new Dado("DELRVY");
-		Dado* dado9 = new Dado("DISTTY");
-		Dado* dado10 = new Dado("EEGHNW");
-		Dado* dado11 = new Dado("EEINSU");
-		Dado* dado12 = new Dado("EHRTVW");
-		Dado* dado13 = new Dado("EIOSST");
-		Dado* dado14 = new Dado("ELRTTY");
-		Dado* dado15 = new Dado("HIMNQU");
-		Dado* dado16 = new Dado("HLNNRZ");
-	
-	
-		char a1 = dado1->roll();
-		global_tablero[0][0] = a1;
-		std::string str1;
-		str1 += a1;
-		label1->Text = gcnew System::String(str1.c_str());
 
-		char a2 = dado2->roll();
-		global_tablero[0][1] = a2;
-		std::string str2; 
-		str2 += a2; 
-		label2->Text = gcnew System::String(str2.c_str());
+		Dado* dado = new Dado[16];
+		std::string configuraciones[] = { "AAEEGN", "ABBJOO" , "ACHOPS" , "AFFKPS" , "AOOTTW", "CIMOTU" , "DEILRX" , "DELRVY" , "DISTTY" , "EEGHNW", "EEINSU", "EHRTVW","EIOSST" , "ELRTTY", "HIMNQU", "HLNNRZ" };
+		for (int i = 0; i < 16; i++) {
+			dado[i] = Dado(configuraciones[i]);
+		}
 
-		char a3 = dado3->roll();
-		global_tablero[0][2] = a3;
-		std::string str3;
-		str3 += a3;
-		label3->Text = gcnew System::String(str3.c_str());
-
-		char a4 = dado4->roll();
-		global_tablero[0][3] = a4;
-		std::string str4;
-		str4 += a4;
-		label4->Text = gcnew System::String(str4.c_str());
-
-		char a5 = dado5->roll();
-		global_tablero[1][0] = a5;
-		std::string str5;
-		str5 += a5;
-		label5->Text = gcnew System::String(str5.c_str());
-
-		char a6 = dado6->roll();
-		global_tablero[1][1] = a6;
-		std::string str6;
-		str6 += a6;
-		label6->Text = gcnew System::String(str6.c_str());
-
-		char a7 = dado7->roll();
-		global_tablero[1][2] = a7;
-		std::string str7;
-		str7 += a7;
-		label7->Text = gcnew System::String(str7.c_str());
-
-		char a8 = dado8->roll();
-		global_tablero[1][3] = a8;
-		std::string str8;
-		str8 += a8;
-		label8->Text = gcnew System::String(str8.c_str());
-
-		char a9= dado9->roll();
-		global_tablero[2][0] = a9;
-		std::string str9;
-		str9 += a9;
-		label9->Text = gcnew System::String(str9.c_str());
-
-		char a10 = dado10->roll();
-		global_tablero[2][1] = a10;
-		std::string str10;
-		str10 += a10;
-		label10->Text = gcnew System::String(str10.c_str());
-
-		char a11 = dado11->roll();
-		global_tablero[2][2] = a11;
-		std::string str11;
-		str11 += a11;
-		label11->Text = gcnew System::String(str11.c_str());
-
-		char a12 = dado12->roll();
-		global_tablero[2][3] = a12;
-		std::string str12;
-		str12 += a12;
-		label12->Text = gcnew System::String(str12.c_str());
-
-		char a13 = dado13->roll();
-		global_tablero[3][0] = a13;
-		std::string str13;
-		str13 += a13;
-		label13->Text = gcnew System::String(str13.c_str());
-
-		char a14 = dado14->roll();
-		global_tablero[3][1] = a14;
-		std::string str14;
-		str14 += a14;
-		label14->Text = gcnew System::String(str14.c_str());
-
-		char a15 = dado15->roll();
-		global_tablero[3][2] = a15;
-		std::string str15;
-		str15 += a15;
-		label15->Text = gcnew System::String(str15.c_str());
-
-		char a16 = dado16->roll();
-		global_tablero[3][3] = a16;
-		std::string str16;
-		str16 += a16;
-		label16->Text = gcnew System::String(str16.c_str());
-		
+		global_tablero = "";
+		for (int i = 0; i < 16; i++) {
+			global_tablero += dado[i].roll();
+		}
+		updateBoard();
 	}
-		  
+//ROTAR
 public: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-
+	std::string newTablero = "";
+	for (int i = 0; i < 4; i++) {
+		std::string str;
+		for (int j = 0; j < 4; j++) {
+			str += global_tablero[i + (j * 4)];
+		}
+		for (int j = 3; j >= 0; j--) {
+			newTablero += str[j];
+		}
+	}
+	global_tablero = newTablero;
+	updateBoard();
 }
-private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 
+//ENTER
+private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 	System::String^ msg = "No se puede formar la palabra. intentalo de nuevo";
 	System::String^ strS = textBox1->Text;
 	std::string str = msclr::interop::marshal_as<std::string>(strS);
 	auto cadena = str.c_str();
 	int c=0,bandera=0;
 	char a, b;
-	for (int i = 0; i < str.size() - 1; i++) {
-		a = cadena[c];
-		b = cadena[c + 1];
-		c++;
-		if (!esAdyacente(a, b))
-			bandera = 1;
-	}
-	if (bandera == 1) {
-		MessageBox::Show(msg);
-	}
-	else
-	{
-		listBox1->Items->Add(textBox1->Text);
-	}
+	listBox1->Items->Add(textBox1->Text);
 
+	//si la palabra no existe
+	//MessageBox::Show(msg);
 }
-public: bool esAdyacente(char a, char b) {
-	char adyCentro[8];
-	char adyEsquina[3];
-	char adyBorde[5];
-	int c;
-	char bandera1 = global_tablero[0][0];
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
-			bandera1 = global_tablero[i][j];
-			if (a == global_tablero[i][j]) {
-				if (i == 0 && j == 0) {// ESQUINA SUPERIOR IZQUIERDA
-					bandera1 = global_tablero[i][j];
-					adyEsquina[0] = global_tablero[i + 1][j];
-					adyEsquina[1] = global_tablero[i][j + 1];
-					adyEsquina[2] = global_tablero[i + 1][j + 1];
-					for (c = 0; c < 3; c++) {
-						if (b == adyEsquina[c])
-							return true;
-					}
-				}
-				if (i == 0 && j > 0 && j < 3) {//BORDE SUPERIOR
-					adyBorde[0] = global_tablero[i][j-1];
-					adyBorde[1] = global_tablero[i][j + 1];
-					adyBorde[2] = global_tablero[i + 1][j];
-					adyBorde[3] = global_tablero[i+1][j-1];
-					adyBorde[4] = global_tablero[i + 1][j + 1];
-					for (c = 0; c < 5; c++) {
-						if (b == adyBorde[c])
-							return true;
-					}
-				}
-				if (i == 0 && j == 3) {//ESQUINA SUPERIOR DERECHA
-					adyEsquina[0] = global_tablero[i][j-1];
-					adyEsquina[1] = global_tablero[i+1][j];
-					adyEsquina[2] = global_tablero[i + 1][j - 1];
-					for (c = 0; c < 3; c++) {
-						if (b == adyEsquina[c])
-							return true;
-					}
-				}
-				if (j == 0 && i > 0 && i < 3) {// BORDE IZQUIERDO
-					adyBorde[0] = global_tablero[i-1][j];
-					adyBorde[1] = global_tablero[i-1][j + 1];
-					adyBorde[2] = global_tablero[i][j+1];
-					adyBorde[3] = global_tablero[i + 1][j+1];
-					adyBorde[4] = global_tablero[i + 1][j];
-					for (c = 0; c < 5; c++) {
-						if (b == adyBorde[c])
-							return true;
-					}
-				}
-				if (i > 0 && i < 3 && j>0 && j < 3) {//CENTROS
-					adyCentro[0] = global_tablero[i - 1][j + 1];
-					adyCentro[1] = global_tablero[i - 1][j];
-					adyCentro[2] = global_tablero[i - 1][j - 1];
-					adyCentro[3] = global_tablero[i][j + 1];
-					adyCentro[4] = global_tablero[i + 1][j + 1];
-					adyCentro[5] = global_tablero[i + 1][j];
-					adyCentro[6] = global_tablero[i + 1][j - 1];
-					adyCentro[7] = global_tablero[i][j - 1];
-					for (c = 0; c < 8; c++) {
-						if (b == adyCentro[c])
-							return true;
-					}
-				}
-				if (i > 0 && i < 3 && j == 3) {//BORDE DERECHO
-					adyBorde[0] = global_tablero[i - 1][j];
-					adyBorde[1] = global_tablero[i - 1][j - 1];
-					adyBorde[2] = global_tablero[i][j - 1];
-					adyBorde[3] = global_tablero[i - 1][j];
-					adyBorde[4] = global_tablero[i + 1][j - 1];
-					for (c = 0; c < 5; c++) {
-						if (b == adyBorde[c])
-							return true;
-					}
-				}
-				if (i == 3 && j > 0 && j < 3) {//BORDE INFERIOR
-					adyBorde[0] = global_tablero[i][j - 1];
-					adyBorde[1] = global_tablero[i-1][j - 1];
-					adyBorde[2] = global_tablero[i - 1][j];
-					adyBorde[3] = global_tablero[i - 1][j + 1];
-					adyBorde[4] = global_tablero[i][j + 1];
-					for (c = 0; c < 5; c++) {
-						if (b == adyBorde[c])
-							return true;
-					}
-				}
-				if (i == 3 && j == 0) {//ESQUINA INFERIOR IZQUIERDA
-					adyEsquina[0] = global_tablero[i - 1][j];
-					adyEsquina[1] = global_tablero[i-1][j + 1];
-					adyEsquina[2] = global_tablero[i][j + 1];
-					for (c = 0; c < 3; c++) {
-						if (b == adyEsquina[c])
-							return true;
-					}
-				}
-				if (i == 3 && j==3) {//ESQUINA INFERIOR DERECHA
-					adyEsquina[0] = global_tablero[i][j-1];
-					adyEsquina[1] = global_tablero[i - 1][j - 1];
-					adyEsquina[2] = global_tablero[i-1][j];
-					for (c = 0; c < 3; c++) {
-						if (b == adyEsquina[c])
-							return true;
-					}
-				}
-				
-			}
 
-		}
-	}
-	return false;
-}
+
 private: System::Void Form4x4_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };

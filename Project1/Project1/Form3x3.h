@@ -3,8 +3,10 @@
 #include "Dado.h"
 #include <string>
 #include <vcclr.h>
+#include <fstream>
 #include "tab.h"
 #include <msclr/marshal_cppstd.h>
+#include "Trie.h"
 namespace BOOGLE_BD {
 
 	using namespace System;
@@ -62,22 +64,6 @@ namespace BOOGLE_BD {
 	private: System::Windows::Forms::Label^ label8;
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::ListBox^ listBox1;
-
-
-
-
-
-
-
-
-
-
-
-	protected:
-
-
-
-
 
 	private:
 		/// <summary>
@@ -151,6 +137,7 @@ namespace BOOGLE_BD {
 			this->button2->TabIndex = 1;
 			this->button2->Text = L"Rotar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &Form3x3::button2_Click);
 			// 
 			// button3
 			// 
@@ -228,10 +215,11 @@ namespace BOOGLE_BD {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(53, 124);
+			this->label1->Location = System::Drawing::Point(54, 124);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(0, 82);
+			this->label1->Size = System::Drawing::Size(84, 82);
 			this->label1->TabIndex = 8;
+			this->label1->Text = L"A";
 			// 
 			// label2
 			// 
@@ -240,8 +228,9 @@ namespace BOOGLE_BD {
 				static_cast<System::Byte>(0)));
 			this->label2->Location = System::Drawing::Point(161, 124);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(0, 82);
+			this->label2->Size = System::Drawing::Size(84, 82);
 			this->label2->TabIndex = 9;
+			this->label2->Text = L"A";
 			// 
 			// label3
 			// 
@@ -250,18 +239,20 @@ namespace BOOGLE_BD {
 				static_cast<System::Byte>(0)));
 			this->label3->Location = System::Drawing::Point(269, 124);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(0, 82);
+			this->label3->Size = System::Drawing::Size(84, 82);
 			this->label3->TabIndex = 10;
+			this->label3->Text = L"A";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
 			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label4->Location = System::Drawing::Point(269, 218);
+			this->label4->Location = System::Drawing::Point(53, 218);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(0, 82);
+			this->label4->Size = System::Drawing::Size(84, 82);
 			this->label4->TabIndex = 13;
+			this->label4->Text = L"A";
 			// 
 			// label5
 			// 
@@ -270,28 +261,31 @@ namespace BOOGLE_BD {
 				static_cast<System::Byte>(0)));
 			this->label5->Location = System::Drawing::Point(161, 218);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(0, 82);
+			this->label5->Size = System::Drawing::Size(84, 82);
 			this->label5->TabIndex = 12;
+			this->label5->Text = L"A";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
 			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label6->Location = System::Drawing::Point(53, 218);
+			this->label6->Location = System::Drawing::Point(269, 218);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(0, 82);
+			this->label6->Size = System::Drawing::Size(84, 82);
 			this->label6->TabIndex = 11;
+			this->label6->Text = L"A";
 			// 
 			// label7
 			// 
 			this->label7->AutoSize = true;
 			this->label7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label7->Location = System::Drawing::Point(269, 322);
+			this->label7->Location = System::Drawing::Point(54, 322);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(0, 82);
+			this->label7->Size = System::Drawing::Size(84, 82);
 			this->label7->TabIndex = 16;
+			this->label7->Text = L"A";
 			// 
 			// label8
 			// 
@@ -300,18 +294,20 @@ namespace BOOGLE_BD {
 				static_cast<System::Byte>(0)));
 			this->label8->Location = System::Drawing::Point(161, 322);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(0, 82);
+			this->label8->Size = System::Drawing::Size(84, 82);
 			this->label8->TabIndex = 15;
+			this->label8->Text = L"A";
 			// 
 			// label9
 			// 
 			this->label9->AutoSize = true;
 			this->label9->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label9->Location = System::Drawing::Point(53, 322);
+			this->label9->Location = System::Drawing::Point(269, 322);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(0, 82);
+			this->label9->Size = System::Drawing::Size(84, 82);
 			this->label9->TabIndex = 14;
+			this->label9->Text = L"A";
 			// 
 			// Form3x3
 			// 
@@ -350,213 +346,71 @@ private: System::Void instruccionesToolStripMenuItem_Click(System::Object^ sende
 	instrucciones.ShowDialog();
 }
 
+	   
+System::String^ getSystemString(char c) {
+	std::string str;
+	str += c;
+	return gcnew System::String(str.c_str());
+}
+void updateBoard() {
+	label1->Text = gcnew System::String(getSystemString(global_tablero3[0]));
+	label2->Text = gcnew System::String(getSystemString(global_tablero3[1]));
+	label3->Text = gcnew System::String(getSystemString(global_tablero3[2]));
+	label4->Text = gcnew System::String(getSystemString(global_tablero3[3]));
+	label5->Text = gcnew System::String(getSystemString(global_tablero3[4]));
+	label6->Text = gcnew System::String(getSystemString(global_tablero3[5]));
+	label7->Text = gcnew System::String(getSystemString(global_tablero3[6]));
+	label8->Text = gcnew System::String(getSystemString(global_tablero3[7]));
+	label9->Text = gcnew System::String(getSystemString(global_tablero3[8]));
+}
+	   
+	   //NUEVO
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	listBox1->Items->Clear();
-	Dado* dado1 = new Dado("AAEEGN");
-	Dado* dado2 = new Dado("ABBJOO");
-	Dado* dado3 = new Dado("ACHOPS");
-	Dado* dado4 = new Dado("AFFKPS");
-	Dado* dado5 = new Dado("AOOTTW");
-	Dado* dado6 = new Dado("CIMOTU");
-	Dado* dado7 = new Dado("DEILRX");
-	Dado* dado8 = new Dado("DELRVY");
-	Dado* dado9 = new Dado("DISTTY");
-	Dado* dado10 = new Dado("EEGHNW");
-	Dado* dado11 = new Dado("EEINSU");
-	Dado* dado12 = new Dado("EHRTVW");
-	Dado* dado13 = new Dado("EIOSST");
-	Dado* dado14 = new Dado("ELRTTY");
-	Dado* dado15 = new Dado("HIMNQU");
-	Dado* dado16 = new Dado("HLNNRZ");
+	Dado* dado = new Dado[16];
+	std::string configuraciones[] = { "AAEEGN", "ABBJOO" , "ACHOPS" , "AFFKPS" , "AOOTTW", "CIMOTU" , "DEILRX" , "DELRVY" , "DISTTY" , "EEGHNW", "EEINSU", "EHRTVW","EIOSST" , "ELRTTY", "HIMNQU", "HLNNRZ"};
 
-	char a = dado1->roll();
-	global_tablero3[0][0] = a;
-	std::string str;
-	str += a;
-	label1->Text = gcnew System::String(str.c_str());
+	for (int i = 0; i < 16; i++) {
+		dado[i] = Dado(configuraciones[i]);
+	}
 
-	char a2 = dado2->roll();
-	global_tablero3[0][1] = a2;
-	std::string str2;
-	str2 += a2;
-	label2->Text = gcnew System::String(str2.c_str());
+	global_tablero3 = "";
+	for (int i = 0; i < 9; i++) {
+		global_tablero3 += dado[i].roll();
+	}
 
-	char a3 = dado3->roll();
-	global_tablero3[0][2] = a3;
-	std::string str3;
-	str3 += a3;
-	label3->Text = gcnew System::String(str3.c_str());
+	updateBoard();
+	//llenar todas las posibles combinaciones aqui
 
-	char a4 = dado4->roll();
-	global_tablero3[1][0] = a4;
-	std::string str4;
-	str4 += a4;
-	label4->Text = gcnew System::String(str4.c_str());
-
-	char a5 = dado5->roll();
-	global_tablero3[1][1] = a5;
-	std::string str5;
-	str5 += a5;
-	label5->Text = gcnew System::String(str5.c_str());
-
-	char a6 = dado6->roll();
-	global_tablero3[1][2] = a6;
-	std::string str6;
-	str6 += a6;
-	label6->Text = gcnew System::String(str6.c_str());
-
-	char a7 = dado7->roll();
-	global_tablero3[2][0] = a7;
-	std::string str7;
-	str7 += a7;
-	label7->Text = gcnew System::String(str7.c_str());
-
-	char a8 = dado8->roll();
-	global_tablero3[2][1] = a8;
-	std::string str8;
-	str8 += a8;
-	label8->Text = gcnew System::String(str8.c_str());
-
-	char a9 = dado9->roll();
-	global_tablero3[2][2] = a9;
-	std::string str9;
-	str9 += a9;
-	label9->Text = gcnew System::String(str9.c_str());
+	Trie* diccionary = new Trie();
+	diccionary->cargarDiccionario();
 }
+	   //ENTER
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	//DECLARAR TRIE Y CARGAR PALABRAS AL TRIE
 	System::String^ msg = "No se puede formar la palabra. intentalo de nuevo";
 	System::String^ strS = textBox1->Text;
 	std::string str = msclr::interop::marshal_as<std::string>(strS);
-	auto cadena = str.c_str();
-	int c = 0, bandera = 0;
-	char a, b;
-	for (int i = 0; i < str.size() - 1; i++) {
-		a = cadena[c];
-		b = cadena[c + 1];
-		c++;
-		if (!esAdyacente(a, b))
-			bandera = 1;
-	}
-	if (bandera == 1) {
-		MessageBox::Show(msg);
-	}
-	else
-	{
-		listBox1->Items->Add(textBox1->Text);
-	}
-	
+
+	listBox1->Items->Add(textBox1->Text);
+
 }
-	   public: bool esAdyacente(char a, char b) {
-		   char adyCentro[8];
-		   char adyEsquina[3];
-		   char adyBorde[5];
-		   int c;
-		   char bandera1 = global_tablero3[0][0];
-		   for (int i = 0; i < 3; i++) {
-			   for (int j = 0; j < 3; j++) {
-				   bandera1 = global_tablero3[i][j];
-				   if (a == global_tablero3[i][j]) {
-					   if (i == 0 && j == 0) {// ESQUINA SUPERIOR IZQUIERDA
-						   bandera1 = global_tablero3[i][j];
-						   adyEsquina[0] = global_tablero3[i + 1][j];
-						   adyEsquina[1] = global_tablero3[i][j + 1];
-						   adyEsquina[2] = global_tablero3[i + 1][j + 1];
-						   for (c = 0; c < 3; c++) {
-							   if (b == adyEsquina[c])
-								   return true;
-						   }
-					   }
-					   if (i == 0 && j > 0 && j < 3) {//BORDE SUPERIOR
-						   adyBorde[0] = global_tablero3[i][j - 1];
-						   adyBorde[1] = global_tablero3[i][j + 1];
-						   adyBorde[2] = global_tablero3[i + 1][j];
-						   adyBorde[3] = global_tablero3[i + 1][j - 1];
-						   adyBorde[4] = global_tablero3[i + 1][j + 1];
-						   for (c = 0; c < 5; c++) {
-							   if (b == adyBorde[c])
-								   return true;
-						   }
-					   }
-					   if (i == 0 && j == 3) {//ESQUINA SUPERIOR DERECHA
-						   adyEsquina[0] = global_tablero3[i][j - 1];
-						   adyEsquina[1] = global_tablero3[i + 1][j];
-						   adyEsquina[2] = global_tablero3[i + 1][j - 1];
-						   for (c = 0; c < 3; c++) {
-							   if (b == adyEsquina[c])
-								   return true;
-						   }
-					   }
-					   if (j == 0 && i > 0 && i < 3) {// BORDE IZQUIERDO
-						   adyBorde[0] = global_tablero3[i - 1][j];
-						   adyBorde[1] = global_tablero3[i - 1][j + 1];
-						   adyBorde[2] = global_tablero3[i][j + 1];
-						   adyBorde[3] = global_tablero3[i + 1][j + 1];
-						   adyBorde[4] = global_tablero3[i + 1][j];
-						   for (c = 0; c < 5; c++) {
-							   if (b == adyBorde[c])
-								   return true;
-						   }
-					   }
-					   if (i > 0 && i < 3 && j>0 && j < 3) {//CENTROS
-						   adyCentro[0] = global_tablero3[i - 1][j + 1];
-						   adyCentro[1] = global_tablero3[i - 1][j];
-						   adyCentro[2] = global_tablero3[i - 1][j - 1];
-						   adyCentro[3] = global_tablero3[i][j + 1];
-						   adyCentro[4] = global_tablero3[i + 1][j + 1];
-						   adyCentro[5] = global_tablero3[i + 1][j];
-						   adyCentro[6] = global_tablero3[i + 1][j - 1];
-						   adyCentro[7] = global_tablero3[i][j - 1];
-						   for (c = 0; c < 8; c++) {
-							   if (b == adyCentro[c])
-								   return true;
-						   }
-					   }
-					   if (i > 0 && i < 3 && j == 3) {//BORDE DERECHO
-						   adyBorde[0] = global_tablero3[i - 1][j];
-						   adyBorde[1] = global_tablero3[i - 1][j - 1];
-						   adyBorde[2] = global_tablero3[i][j - 1];
-						   adyBorde[3] = global_tablero3[i - 1][j];
-						   adyBorde[4] = global_tablero3[i + 1][j - 1];
-						   for (c = 0; c < 5; c++) {
-							   if (b == adyBorde[c])
-								   return true;
-						   }
-					   }
-					   if (i == 3 && j > 0 && j < 3) {//BORDE INFERIOR
-						   adyBorde[0] = global_tablero3[i][j - 1];
-						   adyBorde[1] = global_tablero3[i - 1][j - 1];
-						   adyBorde[2] = global_tablero3[i - 1][j];
-						   adyBorde[3] = global_tablero3[i - 1][j + 1];
-						   adyBorde[4] = global_tablero3[i][j + 1];
-						   for (c = 0; c < 5; c++) {
-							   if (b == adyBorde[c])
-								   return true;
-						   }
-					   }
-					   if (i == 3 && j == 0) {//ESQUINA INFERIOR IZQUIERDA
-						   adyEsquina[0] = global_tablero3[i - 1][j];
-						   adyEsquina[1] = global_tablero3[i - 1][j + 1];
-						   adyEsquina[2] = global_tablero3[i][j + 1];
-						   for (c = 0; c < 3; c++) {
-							   if (b == adyEsquina[c])
-								   return true;
-						   }
-					   }
-					   if (i == 3 && j == 3) {//ESQUINA INFERIOR DERECHA
-						   adyEsquina[0] = global_tablero3[i][j - 1];
-						   adyEsquina[1] = global_tablero3[i - 1][j - 1];
-						   adyEsquina[2] = global_tablero3[i - 1][j];
-						   for (c = 0; c < 3; c++) {
-							   if (b == adyEsquina[c])
-								   return true;
-						   }
-					   }
 
-				   }
-
-			   }
-		   }
-		   return false;
-	   }
+//rotar
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	std::string newTablero="";
+	for (int i = 0; i < 3; i++) {
+		std::string str;
+		for (int j = 0; j < 3; j++) {
+			str += global_tablero3[i + (j * 3)];
+		}
+		for (int j = 2; j >= 0; j--) {
+			newTablero += str[j];
+		}
+	}
+	global_tablero3 = newTablero;
+	updateBoard();
+}
 };
 }
