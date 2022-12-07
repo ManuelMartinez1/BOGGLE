@@ -6,8 +6,11 @@
 #include <vcclr.h>
 #include <math.h>
 #include <msclr/marshal_cppstd.h>
+#include <sstream>
 #include "Trie.h"
 #include "Graph.h"
+
+
 namespace BOOGLE_BD {
 	using namespace System::Text;
 	using namespace System;
@@ -168,6 +171,7 @@ namespace BOOGLE_BD {
 			this->button4->TabIndex = 3;
 			this->button4->Text = L"Terminar";
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &Form4x4::button4_Click);
 			// 
 			// button1
 			// 
@@ -457,6 +461,7 @@ namespace BOOGLE_BD {
 	}
 
 	//NUEVO 
+	int puntaje;
 	public: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		listBox1->Items->Clear();
 
@@ -475,6 +480,7 @@ namespace BOOGLE_BD {
 		diccionary->cargarDiccionario();
 		Graph* graph = new Graph(4);
 		allWordsInBoard = graph->getAllPossibleWords(global_tablero, diccionary);
+		puntaje = 0;
 	}
 
 //ROTAR
@@ -510,6 +516,28 @@ public: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e)
 
 		if (wordInBoard(str)) {
 			listBox1->Items->Add(textBox1->Text);
+			switch (str.size()) {
+			case 3:
+				puntaje += 1;
+				break;
+			case 4:
+				puntaje += 1;
+				break;
+			case 5:
+				puntaje += 2;
+				break;
+			case 6:
+				puntaje += 3;
+				break;
+			case 7:
+				puntaje += 5;
+				break;
+			default:
+				if (str.size() >= 8) {
+					puntaje += 11;
+				}
+				break;
+			}
 		}
 		else {
 			MessageBox::Show(msg);
@@ -522,6 +550,17 @@ public: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e)
 		for (auto i : allWordsInBoard) {
 			listBox1->Items->Add(getSystemString(i));
 		}
+	}
+
+		   //TERMINAR
+	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+		listBox1->Items->Clear();
+		std::stringstream stream;
+		stream << puntaje;
+		std::string msg;
+		stream >> msg;
+		MessageBox::Show(getSystemString("El puntaje es: " + msg));
+		puntaje = 0;
 	}
 
 	private: System::Void Form4x4_Load(System::Object^ sender, System::EventArgs^ e) {
