@@ -6,7 +6,8 @@ Trie::Trie()
     for (int i = 0; i < Alfabeto; i++)
         this->Hijo[i] = nullptr;
 }
-inline void Trie::Insertar(std::string palabra)
+
+void Trie::Insertar(std::string palabra)
 {
     Trie* temp = this;
     for (int i = 0; i < palabra.length(); i++) {
@@ -17,8 +18,8 @@ inline void Trie::Insertar(std::string palabra)
     }
     temp->Final = true;
 }
-inline bool Trie::BuscarPalabra(std::string palabra)
-{
+
+bool Trie::BuscarPalabra(std::string palabra){
     Trie* temp = this;
     for (int i = 0; i < palabra.length(); i++) {
         int index = palabra[i] - 'a';
@@ -28,10 +29,9 @@ inline bool Trie::BuscarPalabra(std::string palabra)
     }
     return temp->Final;
 }
-inline bool Trie::BuscarLetras(std::string palabra)
-{
+bool Trie::BuscarLetras(std::string palabra){
     Trie* temp = this;
-    for (int i = 0; i < palabra.length(); i++) {
+    for (int i = 0; i < palabra.size(); i++) {
         int index = palabra[i] - 'a';
         if (temp->Hijo[index] == nullptr)
             return false;
@@ -39,8 +39,7 @@ inline bool Trie::BuscarLetras(std::string palabra)
     }
     if (temp != nullptr)
         return true;
-    else
-        return false;
+    return false;
 }
 
 void Trie::cargarDiccionario(){
