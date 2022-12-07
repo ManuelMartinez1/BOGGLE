@@ -4,6 +4,7 @@
 #include <string>
 #include <vcclr.h>
 #include <fstream>
+#include <sstream>
 #include "tab.h"
 #include <msclr/marshal_cppstd.h>
 #include "Trie.h"
@@ -160,6 +161,7 @@ namespace BOOGLE_BD {
 			this->button4->TabIndex = 3;
 			this->button4->Text = L"Terminar";
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &Form3x3::button4_Click);
 			// 
 			// groupBox1
 			// 
@@ -370,6 +372,7 @@ void updateBoard() {
 }
 
 	   //NUEVO
+int puntaje;
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	listBox1->Items->Clear();
 	Dado* dado = new Dado[16];
@@ -389,6 +392,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	diccionary->cargarDiccionario();
 	Graph* graph = new Graph(3);
 	allWordsInBoard = graph->getAllPossibleWords(global_tablero3, diccionary);
+	puntaje = 0;
 }
 	   
 	bool wordInBoard(std::string str) {
@@ -401,42 +405,76 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	}
 
 	   //ENTER
-private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
-	System::String^ msg = "No se puede formar la palabra. intentalo de nuevo";
-	System::String^ strS = textBox1->Text;
-	std::string str = msclr::interop::marshal_as<std::string>(strS);
+	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+		System::String^ msg = "No se puede formar la palabra. intentalo de nuevo";
+		System::String^ strS = textBox1->Text;
+		std::string str = msclr::interop::marshal_as<std::string>(strS);
 
-	if (wordInBoard(str)) {
-		listBox1->Items->Add(textBox1->Text);
-	}
-	else {
-		MessageBox::Show(msg);
-	}
-}
+		if (wordInBoard(str)) {
+			listBox1->Items->Add(textBox1->Text);
+			switch (str.size()) {
+				case 3:
+					puntaje += 1;
+					break;
+				case 4:
+					puntaje += 1;
+					break;
+				case 5:
+					puntaje += 2;
+					break;
+				case 6:
+					puntaje += 3;
+					break;
+				case 7:
+					puntaje += 5;
+					break;
+				default:
+					if (str.size() >= 8) {
+						puntaje += 11;
+					}
+					break;
+			}
 
-//rotar
-private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	std::string newTablero="";
-	for (int i = 0; i < 3; i++) {
-		std::string str;
-		for (int j = 0; j < 3; j++) {
-			str += global_tablero3[i + (j * 3)];
 		}
-		for (int j = 2; j >= 0; j--) {
-			newTablero += str[j];
+		else {
+			MessageBox::Show(msg);
 		}
 	}
-	global_tablero3 = newTablero;
-	updateBoard();
-}
 
-	   //resolver
-private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-	listBox1->Items->Clear();
-	for (auto i : allWordsInBoard) {
-		listBox1->Items->Add(getSystemString(i));
+	//rotar
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		std::string newTablero="";
+		for (int i = 0; i < 3; i++) {
+			std::string str;
+			for (int j = 0; j < 3; j++) {
+				str += global_tablero3[i + (j * 3)];
+			}
+			for (int j = 2; j >= 0; j--) {
+				newTablero += str[j];
+			}
+		}
+		global_tablero3 = newTablero;
+		updateBoard();
 	}
-}
+
+	   //RESOLVER
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		listBox1->Items->Clear();
+		for (auto i : allWordsInBoard) {
+			listBox1->Items->Add(getSystemString(i));
+		}
+	}
+
+	//TERMINAR
+	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+		listBox1->Items->Clear();
+		std::stringstream stream;
+		stream << puntaje;
+		std::string msg;
+		stream >> msg;
+		MessageBox::Show(getSystemString("El puntaje es: " + msg));
+		puntaje = 0;
+	}
 
 };
 }
