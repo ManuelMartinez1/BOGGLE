@@ -20,6 +20,6 @@ inline Dado::Dado(std::string configuracion) {
 inline std::string Dado::roll() {
 	int pos = rand() % 6;// PONER SRAND PARA QUE NO SELECCIONE EL MISMO CADA VEZ
 	std::string str;
-	str += dado[pos];
+	str += tolower(dado[pos]);
 	return str;
 }
