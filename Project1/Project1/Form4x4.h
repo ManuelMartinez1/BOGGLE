@@ -6,6 +6,8 @@
 #include <vcclr.h>
 #include <math.h>
 #include <msclr/marshal_cppstd.h>
+#include "Trie.h"
+#include "Graph.h"
 namespace BOOGLE_BD {
 	using namespace System::Text;
 	using namespace System;
@@ -185,6 +187,7 @@ namespace BOOGLE_BD {
 			this->button3->TabIndex = 2;
 			this->button3->Text = L"Resolver";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &Form4x4::button3_Click);
 			// 
 			// button2
 			// 
@@ -430,6 +433,9 @@ namespace BOOGLE_BD {
 		str += c;
 		return gcnew System::String(str.c_str());
 	}
+	System::String^ getSystemString(std::string str) {
+		return gcnew System::String(str.c_str());
+	}
 
 	void updateBoard() {
 		label1->Text = gcnew System::String(getSystemString(global_tablero[0]));
@@ -465,7 +471,12 @@ namespace BOOGLE_BD {
 			global_tablero += dado[i].roll();
 		}
 		updateBoard();
+		Trie* diccionary = new Trie();
+		diccionary->cargarDiccionario();
+		Graph* graph = new Graph(4);
+		allWordsInBoard = graph->getAllPossibleWords(global_tablero, diccionary);
 	}
+
 //ROTAR
 public: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	std::string newTablero = "";
@@ -482,23 +493,40 @@ public: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e)
 	updateBoard();
 }
 
-//ENTER
-private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
-	System::String^ msg = "No se puede formar la palabra. intentalo de nuevo";
-	System::String^ strS = textBox1->Text;
-	std::string str = msclr::interop::marshal_as<std::string>(strS);
-	auto cadena = str.c_str();
-	int c=0,bandera=0;
-	char a, b;
-	listBox1->Items->Add(textBox1->Text);
+	bool wordInBoard(std::string str) {
+		for (auto i : allWordsInBoard) {
+			if (i == str) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-	//si la palabra no existe
-	//MessageBox::Show(msg);
-}
+	//ENTER
+	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+		System::String^ msg = "No se puede formar la palabra. intentalo de nuevo";
+		System::String^ strS = textBox1->Text;
+		std::string str = msclr::interop::marshal_as<std::string>(strS);
 
+		if (wordInBoard(str)) {
+			listBox1->Items->Add(textBox1->Text);
+		}
+		else {
+			MessageBox::Show(msg);
+		}
+	}
+	
+		   //RESOLVER
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		listBox1->Items->Clear();
+		for (auto i : allWordsInBoard) {
+			listBox1->Items->Add(getSystemString(i));
+		}
+	}
 
-private: System::Void Form4x4_Load(System::Object^ sender, System::EventArgs^ e) {
-}
+	private: System::Void Form4x4_Load(System::Object^ sender, System::EventArgs^ e) {
+
+	}
 };
 
 }
