@@ -480,6 +480,11 @@ namespace BOOGLE_BD {
 		diccionary->cargarDiccionario();
 		Graph* graph = new Graph(4);
 		allWordsInBoard = graph->getAllPossibleWords(global_tablero, diccionary);
+
+		//delete duplicates in allwordsInboard
+		std::sort(allWordsInBoard.begin(), allWordsInBoard.end());
+		allWordsInBoard.erase(std::unique(allWordsInBoard.begin(), allWordsInBoard.end()), allWordsInBoard.end());
+
 		puntaje = 0;
 		wordsFound.clear();
 	}
@@ -512,7 +517,7 @@ public: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e)
 	//ENTER
 	
 	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
-		System::String^ msg = "No se puede formar la palabra. intentalo de nuevo";
+		System::String^ msg = "No se puede formar la palabra o la palabra ya fue seleccionada. Intentalo de nuevo";
 		System::String^ strS = textBox1->Text;
 		std::string str = msclr::interop::marshal_as<std::string>(strS);
 

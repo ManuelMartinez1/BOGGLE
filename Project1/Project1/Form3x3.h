@@ -393,6 +393,11 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	diccionary->cargarDiccionario();
 	Graph* graph = new Graph(3);
 	allWordsInBoard = graph->getAllPossibleWords(global_tablero3, diccionary);
+
+	//delete duplicates in allwordsInboard
+	std::sort(allWordsInBoard.begin(), allWordsInBoard.end());
+	allWordsInBoard.erase(std::unique(allWordsInBoard.begin(), allWordsInBoard.end()), allWordsInBoard.end());
+
 	puntaje = 0;
 	wordsFound.clear();
 }
