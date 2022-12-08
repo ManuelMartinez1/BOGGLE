@@ -24,12 +24,11 @@ namespace BOOGLE_BD {
 	/// <summary>
 	/// Summary for MyForm
 	/// </summary>
-	public ref class Form3x3 : public System::Windows::Forms::Form
-	{
+	public ref class Form3x3 : public System::Windows::Forms::Form{
 	public:
-		Form3x3(void)
-		{
+		Form3x3(void){
 			InitializeComponent();
+
 			//
 			//TODO: Add the constructor code here
 			//
@@ -39,15 +38,12 @@ namespace BOOGLE_BD {
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~Form3x3()
-		{
-			if (components)
-			{
+		~Form3x3(){
+			if (components){
 				delete components;
 			}
 		}
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
-	protected:
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Button^ button2;
@@ -56,8 +52,6 @@ namespace BOOGLE_BD {
 	private: System::Windows::Forms::Button^ button5;
 	private: System::Windows::Forms::GroupBox^ groupBox1;
 	private: System::Windows::Forms::MenuStrip^ menuStrip2;
-
-
 	private: System::Windows::Forms::GroupBox^ groupBox2;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
@@ -69,7 +63,6 @@ namespace BOOGLE_BD {
 	private: System::Windows::Forms::Label^ label8;
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::ListBox^ listBox1;
-
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -81,8 +74,40 @@ namespace BOOGLE_BD {
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
-		void InitializeComponent(void)
-		{
+		/// 
+		
+		int puntaje;
+		void saveBoard() {
+			listBox1->Items->Clear();
+			Dado* dado = new Dado[16];
+			std::string configuraciones[] = { "AAEEGN", "ABBJOO" , "ACHOPS" , "AFFKPS" , "AOOTTW", "CIMOTU" , "DEILRX" , "DELRVY" , "DISTTY" , "EEGHNW", "EEINSU", "EHRTVW","EIOSST" , "ELRTTY", "HIMNQU", "HLNNRZ" };
+
+			for (int i = 0; i < 16; i++) {
+				dado[i] = Dado(configuraciones[i]);
+			}
+
+			global_tablero3 = "";
+			for (int i = 0; i < 9; i++) {
+				global_tablero3 += dado[i].roll();
+			}
+
+			updateBoard();
+			Trie* diccionary = new Trie();
+			diccionary->cargarDiccionario();
+			Graph* graph = new Graph(3);
+			allWordsInBoard = graph->getAllPossibleWords(global_tablero3, diccionary);
+
+			//delete duplicates in allwordsInboard
+			std::sort(allWordsInBoard.begin(), allWordsInBoard.end());
+			allWordsInBoard.erase(std::unique(allWordsInBoard.begin(), allWordsInBoard.end()), allWordsInBoard.end());
+
+			puntaje = 0;
+			wordsFound.clear();
+		}
+
+
+		
+		void InitializeComponent(void){
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
@@ -343,64 +368,41 @@ namespace BOOGLE_BD {
 			this->groupBox2->ResumeLayout(false);
 			this->ResumeLayout(false);
 			this->PerformLayout();
+
+			saveBoard();
 		}
 #pragma endregion
-	private: System::Void groupBox1_Enter(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void groupBox1_Enter(System::Object^ sender, System::EventArgs^ e) { }
+	private: System::Void instruccionesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		Instrucciones instrucciones;
+		instrucciones.ShowDialog();
 	}
-private: System::Void instruccionesToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	Instrucciones instrucciones;
-	instrucciones.ShowDialog();
-}
 	   
-System::String^ getSystemString(char c) {
-	std::string str;
-	str += c;
-	return gcnew System::String(str.c_str());
-}
-System::String^ getSystemString(std::string str) {
-	return gcnew System::String(str.c_str());
-}
-void updateBoard() {
-	label1->Text = gcnew System::String(getSystemString(global_tablero3[0]));
-	label2->Text = gcnew System::String(getSystemString(global_tablero3[1]));
-	label3->Text = gcnew System::String(getSystemString(global_tablero3[2]));
-	label4->Text = gcnew System::String(getSystemString(global_tablero3[3]));
-	label5->Text = gcnew System::String(getSystemString(global_tablero3[4]));
-	label6->Text = gcnew System::String(getSystemString(global_tablero3[5]));
-	label7->Text = gcnew System::String(getSystemString(global_tablero3[6]));
-	label8->Text = gcnew System::String(getSystemString(global_tablero3[7]));
-	label9->Text = gcnew System::String(getSystemString(global_tablero3[8]));
-}
+	System::String^ getSystemString(char c) {
+		std::string str;
+		str += c;
+		return gcnew System::String(str.c_str());
+	}
+	System::String^ getSystemString(std::string str) {
+		return gcnew System::String(str.c_str());
+	}
+	void updateBoard() {
+		label1->Text = gcnew System::String(getSystemString(global_tablero3[0]));
+		label2->Text = gcnew System::String(getSystemString(global_tablero3[1]));
+		label3->Text = gcnew System::String(getSystemString(global_tablero3[2]));
+		label4->Text = gcnew System::String(getSystemString(global_tablero3[3]));
+		label5->Text = gcnew System::String(getSystemString(global_tablero3[4]));
+		label6->Text = gcnew System::String(getSystemString(global_tablero3[5]));
+		label7->Text = gcnew System::String(getSystemString(global_tablero3[6]));
+		label8->Text = gcnew System::String(getSystemString(global_tablero3[7]));
+		label9->Text = gcnew System::String(getSystemString(global_tablero3[8]));
+	}
 
+	
 	   //NUEVO
-int puntaje;
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	listBox1->Items->Clear();
-	Dado* dado = new Dado[16];
-	std::string configuraciones[] = { "AAEEGN", "ABBJOO" , "ACHOPS" , "AFFKPS" , "AOOTTW", "CIMOTU" , "DEILRX" , "DELRVY" , "DISTTY" , "EEGHNW", "EEINSU", "EHRTVW","EIOSST" , "ELRTTY", "HIMNQU", "HLNNRZ"};
-
-	for (int i = 0; i < 16; i++) {
-		dado[i] = Dado(configuraciones[i]);
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		saveBoard();
 	}
-
-	global_tablero3 = "";
-	for (int i = 0; i < 9; i++) {
-		global_tablero3 += dado[i].roll();
-	}
-
-	updateBoard();
-	Trie* diccionary = new Trie();
-	diccionary->cargarDiccionario();
-	Graph* graph = new Graph(3);
-	allWordsInBoard = graph->getAllPossibleWords(global_tablero3, diccionary);
-
-	//delete duplicates in allwordsInboard
-	std::sort(allWordsInBoard.begin(), allWordsInBoard.end());
-	allWordsInBoard.erase(std::unique(allWordsInBoard.begin(), allWordsInBoard.end()), allWordsInBoard.end());
-
-	puntaje = 0;
-	wordsFound.clear();
-}
 	   
 	bool wordInBoard(std::string str) {
 		for (auto i : allWordsInBoard) {

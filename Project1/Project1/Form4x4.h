@@ -89,6 +89,36 @@ namespace BOOGLE_BD {
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
+		
+		int puntaje;
+		void saveBoard() {
+			listBox1->Items->Clear();
+			Dado* dado = new Dado[16];
+			std::string configuraciones[] = { "AAEEGN", "ABBJOO" , "ACHOPS" , "AFFKPS" , "AOOTTW", "CIMOTU" , "DEILRX" , "DELRVY" , "DISTTY" , "EEGHNW", "EEINSU", "EHRTVW","EIOSST" , "ELRTTY", "HIMNQU", "HLNNRZ" };
+
+			for (int i = 0; i < 16; i++) {
+				dado[i] = Dado(configuraciones[i]);
+			}
+
+			global_tablero = "";
+			for (int i = 0; i < 16; i++) {
+				global_tablero += dado[i].roll();
+			}
+
+			updateBoard();
+			Trie* diccionary = new Trie();
+			diccionary->cargarDiccionario();
+			Graph* graph = new Graph(4);
+			allWordsInBoard = graph->getAllPossibleWords(global_tablero, diccionary);
+
+			//delete duplicates in allwordsInboard
+			std::sort(allWordsInBoard.begin(), allWordsInBoard.end());
+			allWordsInBoard.erase(std::unique(allWordsInBoard.begin(), allWordsInBoard.end()), allWordsInBoard.end());
+
+			puntaje = 0;
+			wordsFound.clear();
+		}
+
 		void InitializeComponent(void)
 		{
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
@@ -429,6 +459,7 @@ namespace BOOGLE_BD {
 			this->groupBox1->ResumeLayout(false);
 			this->ResumeLayout(false);
 			this->PerformLayout();
+			saveBoard();
 		}
 #pragma endregion
 
@@ -461,32 +492,8 @@ namespace BOOGLE_BD {
 	}
 
 	//NUEVO 
-	int puntaje;
 	public: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		listBox1->Items->Clear();
-
-		Dado* dado = new Dado[16];
-		std::string configuraciones[] = { "AAEEGN", "ABBJOO" , "ACHOPS" , "AFFKPS" , "AOOTTW", "CIMOTU" , "DEILRX" , "DELRVY" , "DISTTY" , "EEGHNW", "EEINSU", "EHRTVW","EIOSST" , "ELRTTY", "HIMNQU", "HLNNRZ" };
-		for (int i = 0; i < 16; i++) {
-			dado[i] = Dado(configuraciones[i]);
-		}
-
-		global_tablero = "";
-		for (int i = 0; i < 16; i++) {
-			global_tablero += dado[i].roll();
-		}
-		updateBoard();
-		Trie* diccionary = new Trie();
-		diccionary->cargarDiccionario();
-		Graph* graph = new Graph(4);
-		allWordsInBoard = graph->getAllPossibleWords(global_tablero, diccionary);
-
-		//delete duplicates in allwordsInboard
-		std::sort(allWordsInBoard.begin(), allWordsInBoard.end());
-		allWordsInBoard.erase(std::unique(allWordsInBoard.begin(), allWordsInBoard.end()), allWordsInBoard.end());
-
-		puntaje = 0;
-		wordsFound.clear();
+		saveBoard();
 	}
 
 //ROTAR
