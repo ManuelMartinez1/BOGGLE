@@ -5,6 +5,7 @@
 #include <vcclr.h>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 #include "tab.h"
 #include <msclr/marshal_cppstd.h>
 #include "Trie.h"
@@ -393,6 +394,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	Graph* graph = new Graph(3);
 	allWordsInBoard = graph->getAllPossibleWords(global_tablero3, diccionary);
 	puntaje = 0;
+	wordsFound.clear();
 }
 	   
 	bool wordInBoard(std::string str) {
@@ -406,12 +408,14 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 	   //ENTER
 	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
-		System::String^ msg = "No se puede formar la palabra. intentalo de nuevo";
+		System::String^ msg = "No se puede formar la palabra o la palabra ya fue seleccionada. Intentalo de nuevo";
 		System::String^ strS = textBox1->Text;
 		std::string str = msclr::interop::marshal_as<std::string>(strS);
 
-		if (wordInBoard(str)) {
+		if (wordInBoard(str) && str.size() > 2 && find(wordsFound.begin(), wordsFound.end(), str) == wordsFound.end()) {
+
 			listBox1->Items->Add(textBox1->Text);
+			wordsFound.push_back(str);
 			switch (str.size()) {
 				case 3:
 					puntaje += 1;
@@ -474,6 +478,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		stream >> msg;
 		MessageBox::Show(getSystemString("El puntaje es: " + msg));
 		puntaje = 0;
+		wordsFound.clear();
 	}
 
 };
