@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <algorithm>
 #include <string>
 #include "Trie.h"
 #include "Queue.h"

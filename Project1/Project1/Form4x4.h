@@ -561,7 +561,8 @@ public: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e)
 	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 		listBox1->Items->Clear();
 		for (auto i : allWordsInBoard) {
-			listBox1->Items->Add(getSystemString(i));
+			if (i.size() > 2)
+				listBox1->Items->Add(getSystemString(i));
 		}
 	}
 
